@@ -6,8 +6,11 @@
   "scripts": {
     "start": "node index.js"
   },
-  "author": "",
+  "author": "ire-aderinokun",
   "dependencies": {
     "twit": "^2.2.4"
+  },
+  "engines": {
+    "node": "4.1.1"
   }
 }
