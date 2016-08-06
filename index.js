@@ -1,29 +1,41 @@
-// SETUP 
+/* ******************
 
+	The Setup
+
+******************* */
 const Twit = require('twit');
-
 const T = new Twit({
-	consumer_key: '5mzvZtbOfrJ3Q2xdrC1Q1nPAP',
-	consumer_secret: 'pMGypGRIMmro0TuEN2XU0rfjGSDAvI4e2aH2Qp0mFNWoxcPrsC',
-	access_token: '743145993844178944-RECsFVYb1YOsZ1MYo1XA0IZWLiSILUS',
-	access_token_secret: 'YJvZ6G2Vyp16ztM4lpY1nWGmtkX8phGEq1G1336RAwCGW'
+	consumer_key: process.env.consumer_key,
+	consumer_secret: process.env.consumer_secret,
+	access_token: process.env.access_token,
+	access_token_secret: process.env.access_token_secret
 });
 
-const IreAderinokun = {
+
+/* ******************
+
+	Key Variables
+
+******************* */
+const me = {
 	id: 2714960622,
 	screen_name: 'ireaderinokun'
-}
+};
 
 const botsofcode = {
 	id: 743145993844179000,
 	screen_name: 'botsofcode'
-}
+};
+
+const emojis = ['👊', '👊', '🙌', '👍', '💁', '👌', '🙅', '👯'];
 
 
+/* ******************
 
+	Tweet Functions
 
-
-const simple_tweet = (tweet) => {
+******************* */
+const tweet = (tweet) => {
 	T.post('statuses/update', {
 		status: tweet
 	});
@@ -48,25 +60,31 @@ const like = (tweet) => {
 
 
 
+/* ******************
 
+	Stream
+
+******************* */
 
 const stream = T.stream('statuses/filter', { track: ['bitsofco.de', 'bitsofcode'] });
 
 stream.on('tweet', (tweet) => {
-	console.log(tweet);
 
-	if ( tweet.user.id === IreAderinokun.id ) {
-		like(tweet);
+	if ( tweet.user.id === me.id ) {
 		retweet(tweet);
 		return;
 	}
+
 	if ( tweet.text.includes('via @ireaderinokun') ) {
-		reply(tweet, 'Thanks for sharing!');
+		like(tweet);
+		reply(tweet, `Thanks for sharing! ${emojis[Math.floor(Math.random() * emojis.length)]}`);
 		return;
 	} 
+
 	if ( tweet.user.id !== botsofcode.id ) {
+		like(tweet);
 		const tweet_url = `https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`;
-		simple_tweet(`@${IreAderinokun.screen_name} ${tweet_url}`)
+		tweet(`@${me.screen_name} ${tweet_url}`);
 	}
 
 });
