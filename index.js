@@ -59,7 +59,7 @@ const like = (tweet) => {
 const addToList = (list, userID) => {
 	T.post('lists/members/create', {
 		slug: list,
-		owner_screen_name: botsofcode.screen_name
+		owner_screen_name: botsofcode.screen_name,
 		user_id: userID
 	});
 }
