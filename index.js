@@ -56,11 +56,11 @@ const like = (tweet) => {
 	T.post('favorites/create', { id: tweet.id_str });
 }
 
-const addToList = (list, user) => {
+const addToList = (list, userID) => {
 	T.post('lists/members/create', {
 		slug: list,
 		owner_screen_name: botsofcode.screen_name
-		user_id: user
+		user_id: userID
 	});
 }
 
@@ -84,7 +84,6 @@ stream.on('tweet', (tweet) => {
 
 	if ( tweet.user.id === me.id ) {
 		retweet(tweet);
-		return;
 	}
 
 	like(tweet);
