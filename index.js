@@ -56,6 +56,14 @@ const like = (tweet) => {
 	T.post('favorites/create', { id: tweet.id_str });
 }
 
+const addToList = (list, user) => {
+	T.post('lists/members/create', {
+		slug: list,
+		owner_screen_name: botsofcode.screen_name
+		user_id: user
+	});
+}
+
 
 
 
@@ -70,22 +78,23 @@ const stream = T.stream('statuses/filter', { track: ['bitsofco.de', 'bitsofcode'
 
 stream.on('tweet', (tweet) => {
 
+	if ( tweet.user.id === botsofcode.id ) {
+		return;
+	}
+
 	if ( tweet.user.id === me.id ) {
 		retweet(tweet);
 		return;
 	}
 
-	if ( tweet.text.includes('via @ireaderinokun') ) {
-		like(tweet);
+	like(tweet);
+
+	if ( tweet.text.includes('@ireaderinokun') ) {
 		reply(tweet, `Thanks for sharing! ${emojis[Math.floor(Math.random() * emojis.length)]}`);
+		addToList('bitsofcoders', tweet.user.id);
 		return;
 	} 
 
-	if ( tweet.user.id !== botsofcode.id ) {
-		like(tweet);
-		const tweet_url = `https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`;
-		tweet(`@${me.screen_name} ${tweet_url}`);
-	}
+	reply(tweet, `Thanks for sharing! ${emojis[Math.floor(Math.random() * emojis.length)]} (cc @${me.screen_name})`);
 
 });
-
