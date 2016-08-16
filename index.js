@@ -56,11 +56,11 @@ const like = (tweet) => {
 	T.post('favorites/create', { id: tweet.id_str });
 }
 
-const addToList = (list, userID) => {
+const addToList = (list, user) => {
 	T.post('lists/members/create', {
 		slug: list,
 		owner_screen_name: botsofcode.screen_name,
-		user_id: userID
+		screen_name: user
 	});
 }
 
@@ -90,7 +90,7 @@ stream.on('tweet', (tweet) => {
 
 	if ( tweet.text.includes('@ireaderinokun') ) {
 		reply(tweet, `Thanks for sharing! ${emojis[Math.floor(Math.random() * emojis.length)]}`);
-		addToList('bitsofcoders', tweet.user.id);
+		addToList('bitsofcoders', tweet.user.screen_name);
 		return;
 	} 
 
