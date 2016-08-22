@@ -8,6 +8,7 @@
   },
   "author": "ire-aderinokun",
   "dependencies": {
+    "express": "^4.14.0",
     "twit": "^2.2.4"
   },
   "engines": {
