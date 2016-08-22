@@ -1,6 +1,6 @@
 {
   "name": "botsofcode",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A bot for bitsofco.de",
   "main": "index.js",
   "scripts": {

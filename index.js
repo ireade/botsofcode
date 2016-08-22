@@ -90,7 +90,7 @@ stream.on('tweet', (tweet) => {
 
 	if ( tweet.text.includes('@ireaderinokun') ) {
 		reply(tweet, `Thanks for sharing! ${emojis[Math.floor(Math.random() * emojis.length)]}`);
-		addToList('bitsofcoders', tweet.user.screen_name);
+		//addToList('bitsofcoders', tweet.user.screen_name);
 		return;
 	} 
 
