@@ -50,6 +50,22 @@ const emojis = ['👊', '👊', '🙌', '👍', '💁', '👌', '🙅', '👯'];
 
 /* ******************
 
+	General Functions
+
+******************* */
+function shouldSendReply() {
+	const randomNumber = Math.random();
+	if ( randomNumber > 0.3 ) return true;
+	return false;
+}
+
+function getEmoji() {
+	return emojis[Math.floor(Math.random() * emojis.length)];
+}
+
+
+/* ******************
+
 	Tweet Functions
 
 ******************* */
@@ -100,18 +116,20 @@ stream.on('tweet', (tweet) => {
 		return;
 	}
 
-	if ( tweet.user.id === me.id ) {
-		retweet(tweet);
-	}
-
 	like(tweet);
 
+	if ( tweet.user.id === me.id ) {
+		retweet(tweet);
+		return;
+	}
+
 	if ( tweet.text.includes('@ireaderinokun') ) {
-		reply(tweet, `Thanks for sharing! ${emojis[Math.floor(Math.random() * emojis.length)]}`);
-		//addToList('bitsofcoders', tweet.user.screen_name);
+		if ( shouldSendReply() ) {
+			reply(tweet, `Thanks for sharing! ${ getEmoji() }`);
+		}
 		return;
 	} 
 
-	reply(tweet, `Thanks for sharing! ${emojis[Math.floor(Math.random() * emojis.length)]} (cc @${me.screen_name})`);
+	reply(tweet, `Thanks for sharing! ${ getEmoji() } (cc @${me.screen_name})`);
 
 });
