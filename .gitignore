@@ -1,3 +1,4 @@
 node_modules
+.idea/
 secrets.js
 npm-debug.log

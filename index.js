@@ -123,7 +123,7 @@ stream.on('tweet', (tweet) => {
 		return;
 	}
 
-	if ( tweet.text.includes('@ireaderinokun') ) {
+	if ( tweet.text.toLowerCase().includes('@ireaderinokun') ) {
 		if ( shouldSendReply() ) {
 			reply(tweet, `Thanks for sharing! ${ getEmoji() }`);
 		}
