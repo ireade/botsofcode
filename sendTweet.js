@@ -11,7 +11,7 @@ const tweet = (tweet) => {
         status: tweet
     });
 }
-const url = 'https://ireade.github.io/bitsofcode-backups/bitsofcode.ghost.2016-09-30.json';
+const url = 'https://ireade.github.io/bitsofcode-backups/bitsofcode.ghost.json';
 
 function fetch(url) {
     return new Promise((resolve, reject) => {
