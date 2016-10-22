@@ -1,6 +1,6 @@
-const T = require('./modules/T');
+const T = require('../modules/T');
 const https = require('https');
-const Twitter = require('./modules/twitter');
+const Twitter = require('../modules/twitter');
 const url = 'https://ireade.github.io/bitsofcode-backups/bitsofcode.ghost.json';
 
 function fetch(url) {

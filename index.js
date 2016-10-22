@@ -21,14 +21,8 @@ app.get('/', function (request, response) {
  The Setup
 
  ******************* */
-const Twit = require('twit');
-const T = new Twit({
-	consumer_key: process.env.consumer_key,
-	consumer_secret: process.env.consumer_secret,
-	access_token: process.env.access_token,
-	access_token_secret: process.env.access_token_secret
-});
-
+const T = require('./modules/T');
+const Twitter = require('./modules/twitter');
 
 /* ******************
 
@@ -66,41 +60,6 @@ function getEmoji() {
 
 /* ******************
 
- Tweet Functions
-
- ******************* */
-const tweet = (tweet) => {
-    T.post('statuses/update', {
-        status: tweet
-    });
-}
-
-const retweet = (tweet) => {
-    T.post('statuses/retweet/:id', {id: tweet.id_str});
-};
-
-const reply = (tweet, reply) => {
-    T.post('statuses/update', {
-        status: `@${tweet.user.screen_name} ${reply}`,
-        in_reply_to_status_id: tweet.id_str
-    });
-}
-
-const like = (tweet) => {
-    T.post('favorites/create', {id: tweet.id_str});
-}
-
-const addToList = (list, user) => {
-    T.post('lists/members/create', {
-        slug: list,
-        owner_screen_name: botsofcode.screen_name,
-        screen_name: user
-    });
-}
-
-
-/* ******************
-
  Stream
 
  ******************* */
@@ -113,21 +72,21 @@ stream.on('tweet', (tweet) => {
 		return;
 	}
 
-	like(tweet);
+    Twitter.like(tweet);
 
 	if ( tweet.user.id === me.id ) {
-		retweet(tweet);
+        Twitter.retweet(tweet);
 		return;
 	}
 
 	if ( tweet.text.toLowerCase().includes('@ireaderinokun') ) {
 		if ( shouldSendReply() ) {
-			reply(tweet, `Thanks for sharing! ${ getEmoji() }`);
+            Twitter.reply(tweet, `Thanks for sharing! ${ getEmoji() }`);
 		}
 		return;
 	}
 
-	reply(tweet, `Thanks for sharing! ${ getEmoji() } (cc @${me.screen_name})`);
+    Twitter.reply(tweet, `Thanks for sharing! ${ getEmoji() } (cc @${me.screen_name})`);
 
 });
 
