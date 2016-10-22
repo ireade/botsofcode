@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const T = require('../modules/T');
 const https = require('https');
 const Twitter = require('../modules/twitter');
