@@ -5,7 +5,7 @@
 const T = require('../modules/T');
 const https = require('https');
 const Twitter = require('../modules/twitter');
-const url = 'https://ireade.github.io/bitsofcode-backups/bitsofcode.ghost.json';
+const url = process.env.bitsofcode_backup_url;
 
 function fetch(url) {
     return new Promise((resolve, reject) => {
