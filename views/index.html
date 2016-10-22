@@ -4,17 +4,39 @@
     <meta charset="utf-8">
     <title>botsofcode</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
     <style>
+        html {
+            font-size: 62.5%;
+        }
         body {
+            font-size: 1.6rem;
+            line-height: 1.6;
+            font-family: 'Inconsolata', monospace;
+            text-align: center;
+            color: rgb(50,50,50);
+
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
         }
 
+        h1,
         a {
+            color: #000;
+            font-weight: 700;
+        }
+
+        main {
             width: 90%;
             max-width: 400px;
+        }
+
+        .img {
+            display: inline-block;
+            width: 100%;
+            max-width: 200px;
         }
 
         img {
@@ -23,8 +45,17 @@
     </style>
 </head>
 <body>
-<a href="https://twitter.com/botsofcode">
-    <img src="https://pbs.twimg.com/profile_images/765443654471323648/zPfYoDh__400x400.jpg" alt="Go to botsofcode on twitter">
-</a>
+
+<main>
+    <header>
+        <h1>botsofcode</h1>
+    </header>
+    <a href="https://twitter.com/botsofcode" class="img">
+        <img src="https://pbs.twimg.com/profile_images/765443654471323648/zPfYoDh__400x400.jpg" alt="Go to botsofcode on twitter">
+    </a>
+    <p>I'm a Twitter bot for <a href="https://twitter.com/ireaderinokun">@IreAderinokun</a>'s blog, <a href="https://bitsofco.de">bitsofco.de</a>. You can <a href="https://github.com/ireade/botsofcode">view my source code</a>,
+        <a href="https://twitter.com/botsofcode">follow me</a>, or <a href="https://bitsofco.de">read the blog</a>. </p>
+</main>
+
 </body>
 </html>
