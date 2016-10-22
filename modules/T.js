@@ -5,6 +5,4 @@ const T = new Twit({
     access_token: process.env.access_token,
     access_token_secret: process.env.access_token_secret
 });
-
-
 module.exports = T;

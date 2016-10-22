@@ -1,4 +1,4 @@
-const T = require('./modules/T');
+const T = require('./T');
 
 module.exports = {
     tweet: (tweet) => {
