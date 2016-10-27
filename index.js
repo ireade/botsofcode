@@ -57,6 +57,13 @@ function getEmoji() {
     return emojis[Math.floor(Math.random() * emojis.length)];
 }
 
+function getTweet(tweet) {
+
+    const text = `Thanks for sharing! ${ getEmoji() }`;
+    return text;
+
+}
+
 
 /* ******************
 
@@ -73,7 +80,6 @@ stream.on('tweet', (tweet) => {
 	}
 
     Twitter.like(tweet);
-
     console.log(tweet);
 
 	if ( tweet.user.id === me.id ) {
@@ -81,14 +87,16 @@ stream.on('tweet', (tweet) => {
 		return;
 	}
 
+    if ( tweet.retweeted_status ) return;
+
 	if ( tweet.text.toLowerCase().includes('@ireaderinokun') ) {
 		if ( shouldSendReply() ) {
-            Twitter.reply(tweet, `Thanks for sharing! ${ getEmoji() }`);
+            Twitter.reply(tweet, getTweet(tweet));
 		}
 		return;
 	}
 
-    Twitter.reply(tweet, `Thanks for sharing! ${ getEmoji() } (cc @${me.screen_name})`);
+    Twitter.reply(tweet, `${ getTweet(tweet) } (cc @${me.screen_name})`);
 
 });
 
