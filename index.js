@@ -74,6 +74,8 @@ stream.on('tweet', (tweet) => {
 
     Twitter.like(tweet);
 
+    console.log(tweet);
+
 	if ( tweet.user.id === me.id ) {
         Twitter.retweet(tweet);
 		return;
