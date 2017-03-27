@@ -80,7 +80,6 @@ stream.on('tweet', (tweet) => {
 	}
 
     Twitter.like(tweet);
-    console.log(tweet);
 
 	if ( tweet.user.id === me.id ) {
         Twitter.retweet(tweet);
@@ -96,7 +95,7 @@ stream.on('tweet', (tweet) => {
 		return;
 	}
 
-    Twitter.reply(tweet, `${ getTweet(tweet) } (cc @${me.screen_name})`);
+    Twitter.reply(tweet, getTweet(tweet));
 
 });
 
