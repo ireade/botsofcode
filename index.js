@@ -71,7 +71,7 @@ function getTweet(tweet) {
 
  ******************* */
 
-const stream = T.stream('statuses/filter', { track: ['bitsofco.de', 'bitsofcode'] });
+const stream = T.stream('statuses/filter', { track: ['bitsofco.de'] });
 
 stream.on('tweet', (tweet) => {
 
