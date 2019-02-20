@@ -32,7 +32,7 @@ function fetch(url) {
 function createTweet(post, tags) {
     let hashtags = '';
     tags.map(tag => hashtags += `#${tag} `)
-    const tweetText = `'${post.title}' https://bitsofco.de/${post.slug} ${hashtags}`;
+    const tweetText = `'${post.title}' https://bitsofco.de/${post.slug}/ ${hashtags}`;
     console.log(tweetText);
     Twitter.tweet(tweetText);
 }
